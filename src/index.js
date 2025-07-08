@@ -85,7 +85,6 @@ export async function sendRequest(url, options= {}) {
         };
 
     } catch (error) {
-
         return formatAxiosError(error);
     }
 }
