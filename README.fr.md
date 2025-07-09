@@ -92,6 +92,25 @@ if (response.success) {
 }
 ```
 
+### `deleteData(url, config)`
+
+Pour supprimer (DELETE) des données.
+
+- **`url`** : L'adresse du serveur.
+- **`config`** (optionnel) : Configuration Axios (par exemple, pour les en-têtes).
+
+**Exemple :**
+
+```javascript
+import { deleteData } from '@neylorxt/react-api';
+
+const response = await deleteData('https://api.example.com/posts/1');
+
+if (response.success) {
+  console.log('Article supprimé :', response.data);
+}
+```
+
 ### `sendRequest(url, options)`
 
 C'est la fonction "couteau suisse". Elle peut tout faire !

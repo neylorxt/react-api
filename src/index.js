@@ -188,6 +188,51 @@ export async function updateData(url, data = {}, config = {}) {
 }
 
 
+/**
+ * Update data using axios (PUT)
+ *
+ * @param {string} url - The endpoint URL
+ * @param {object} [data={}] - The data to send in the request body
+ * @param {object} [config={}] - Additional Axios config (headers, params, etc.)
+ * @returns {Promise<{ success: boolean, status: number, data: any, headers: object }>}
+ *
+ * @example
+ * const data = { name: "Neylorxt" };
+ * { name: 'Sword', rarity: 'legendary' },
+ *   {
+ *     headers: {
+ *       Authorization: `Bearer ${token}`
+ *     },
+ *     params: {
+ *       debug: true,
+ *       lang: 'fr'
+ *     }
+ *   }
+ * const response = await updateData("https://api.example.com/user/123", data, config);
+ */
+export async function deleteData(url, data = {}, config = {}) {
+    try {
+        const { method, data, ...safeConfig } = config; // on retire toute méthode fournie
+
+        const axiosConfig = {
+            ...safeConfig,
+            data: data,
+            params: config.params || {} // s'assurer que params existe
+        };
+        const response = await axios.delete(url, axiosConfig); // ✅ config peut inclure headers + params
+
+        return {
+            success: true,
+            status: response.status,
+            data: response.data,
+            headers: response.headers
+        };
+
+    } catch (error) {
+
+        return formatAxiosError(error);
+    }
+}
 
 
 
