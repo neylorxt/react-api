@@ -1,8 +1,10 @@
-# @neylorxt/react-api
+# @neylorxt/react-request
+
+> **Note:** This package was formerly known as `@neylorxt/react-api`. The name has been updated to `@neylorxt/react-request` for clarity.
 
 [Version Française](README.fr.md)
 
-**@neylorxt/react-api** is a lightweight wrapper around [Axios](https://axios-http.com/) that simplifies HTTP requests in your projects. It's designed to be straightforward and beginner-friendly.
+**@neylorxt/react-request** is a lightweight wrapper around [Axios](https://axios-http.com/) that simplifies HTTP requests in your projects. It's designed to be straightforward and beginner-friendly.
 
 ## 🤔 Why Use It?
 
@@ -18,11 +20,11 @@ First, ensure you have `axios` in your project, as it is a required peer depende
 
 ```bash
 npm install axios
-npm install @neylorxt/react-api
+npm install @neylorxt/react-request
 
 or
 
-npm install axios @neylorxt/react-api
+npm install axios @neylorxt/react-request
 ```
 
 ## ✨ API Reference
@@ -37,7 +39,7 @@ Use this function to fetch data from an endpoint (HTTP GET).
 **Example:**
 
 ```javascript
-import { getData } from '@neylorxt/react-api';
+import { getData } from '@neylorxt/react-request';
 
 const response = await getData('https://api.example.com/posts/1');
 
@@ -59,7 +61,7 @@ Use this function to create new data (HTTP POST).
 **Example:**
 
 ```javascript
-import { sendData } from '@neylorxt/react-api';
+import { sendData } from '@neylorxt/react-request';
 
 const newPost = { title: 'My Awesome Post', content: '...' };
 const response = await sendData('https://api.example.com/posts', newPost);
@@ -80,7 +82,7 @@ Use this function to update existing data (HTTP PUT).
 **Example:**
 
 ```javascript
-import { updateData } from '@neylorxt/react-api';
+import { updateData } from '@neylorxt/react-request';
 
 const updatedData = { title: 'My Updated Title' };
 const response = await updateData('https://api.example.com/posts/1', updatedData);
@@ -100,7 +102,7 @@ Use this function to delete data (HTTP DELETE).
 **Example:**
 
 ```javascript
-import { deleteData } from '@neylorxt/react-api';
+import { deleteData } from '@neylorxt/react-request';
 
 const response = await deleteData('https://api.example.com/posts/1');
 
@@ -122,7 +124,7 @@ This is a general-purpose function that can handle any type of HTTP request.
 **Example:**
 
 ```javascript
-import { sendRequest } from '@neylorxt/react-api';
+import { sendRequest } from '@neylorxt/react-request';
 
 // A simple GET request
 const { data } = await sendRequest('https://api.example.com/users');
@@ -164,7 +166,7 @@ Here are some of the most common properties you can use:
 **Example using `config`:**
 
 ```javascript
-import { getData } from '@neylorxt/react-api';
+import { getData } from '@neylorxt/react-request';
 
 const token = 'your-secret-auth-token';
 
@@ -213,7 +215,7 @@ You can always check the `success` property to determine if your request was suc
 
 ## 🤝 Contributing
 
-This is an open-source project. If you want to help improve it, feel free to open an issue or a pull request on [GitHub](https://github.com/neylorxt/react-api).
+This is an open-source project. If you want to help improve it, feel free to open an issue or a pull request on [GitHub](https://github.com/neylorxt/react-request).
 
 ## 📜 License
 
