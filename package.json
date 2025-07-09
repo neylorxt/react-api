@@ -1,0 +1,43 @@
+{
+  "name": "@neylorxt/react-api",
+  "version": "0.0.1",
+  "description": "It's a mini package that makes it easy for you to send data via axios.",
+  "keywords": [
+    "neylorxt",
+    "react-api",
+    "neylorxt-react-api",
+    "api"
+  ],
+  "homepage": "https://github.com/neylorxt/react-api#readme",
+  "bugs": {
+    "url": "https://github.com/neylorxt/react-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neylorxt/react-api.git"
+  },
+  "license": "MIT",
+  "author": "neylorxt",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist --extensions \".js,.jsx\""
+  },
+  "peerDependencies": {
+    "axios": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "axios": "^1.10.0"
+  }
+}
