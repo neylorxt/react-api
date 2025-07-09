@@ -133,7 +133,11 @@ const config = {
 };
 const response = await sendRequest('https://api.example.com/posts/1', {
   method: 'delete',
-  config: config
+  config: config,
+    params: {
+        id: 1,
+        ...
+    }
 });
 
 if (response.success) {
