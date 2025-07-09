@@ -1,18 +1,20 @@
-# @neylorxt/react-api
+# @neylorxt/react-request
+
+> **Note :** Ce package était anciennement connu sous le nom de `@neylorxt/react-api`. Le nom a été mis à jour en `@neylorxt/react-request` pour plus de clarté.
 
 [English Version](README.md)
 
-**@neylorxt/react-api** est un mini-package léger qui simplifie l'envoi de données avec [Axios](https://axios-http.com/) dans vos projets. Conçu pour être simple et accessible aux débutants.
+**@neylorxt/react-request** est un mini-package léger qui simplifie l'envoi de données avec [Axios](https://axios-http.com/) dans vos projets. Conçu pour être simple et accessible aux débutants.
 
-## 🤔 Pourquoi utiliser React API ?
+## 🤔 Pourquoi utiliser React Request ?
 
-Quand on débute, interagir avec des serveurs (API) peut sembler compliqué. **React API** a été créé pour vous faciliter la vie :
+Quand on débute, interagir avec des serveurs (API) peut sembler compliqué. **React Request** a été créé pour vous faciliter la vie :
 
 - **Simple à utiliser** : Des fonctions claires pour chaque besoin (recevoir, envoyer, mettre à jour).
 - **Gestion des erreurs simplifiée** : Fini les `try...catch` à rallonge. On vous retourne un objet simple pour savoir si tout s'est bien passé.
 - **Standardisé** : Les réponses du serveur sont toujours au même format, facile à traiter.
 
-En gros, vous vous concentrez sur votre application, et **React API** s'occupe de la communication avec le serveur.
+En gros, vous vous concentrez sur votre application, et **React Request** s'occupe de la communication avec le serveur.
 
 
 ## 🚀 Installation
@@ -21,11 +23,11 @@ Pour utiliser ce package, vous devez avoir `axios` installé dans votre projet.
 
 ```bash
 npm install axios
-npm install @neylorxt/react-api
+npm install @neylorxt/react-request
 
 ou
 
-npm install axios @neylorxt/react-api
+npm install axios @neylorxt/react-request
 ```
 
 ## ✨ Comment ça marche ?
@@ -40,7 +42,7 @@ Pour recevoir (GET) des données.
 **Exemple :**
 
 ```javascript
-import { getData } from '@neylorxt/react-api';
+import { getData } from '@neylorxt/react-request';
 
 const response = await getData('https://api.example.com/posts/1');
 if (response.success) {
@@ -61,7 +63,7 @@ Pour envoyer (POST) de nouvelles données.
 **Exemple :**
 
 ```javascript
-import { sendData } from '@neylorxt/react-api';
+import { sendData } from '@neylorxt/react-request';
 
 const newPost = { title: 'Mon super article', content: '...' };
 const response = await sendData('https://api.example.com/posts', newPost);
@@ -82,7 +84,7 @@ Pour mettre à jour (PUT) des données existantes.
 **Exemple :**
 
 ```javascript
-import { updateData } from '@neylorxt/react-api';
+import { updateData } from '@neylorxt/react-request';
 
 const updatedPost = { title: 'Mon titre mis à jour' };
 const response = await updateData('https://api.example.com/posts/1', updatedPost);
@@ -102,7 +104,7 @@ Pour supprimer (DELETE) des données.
 **Exemple :**
 
 ```javascript
-import { deleteData } from '@neylorxt/react-api';
+import { deleteData } from '@neylorxt/react-request';
 
 const response = await deleteData('https://api.example.com/posts/1');
 
@@ -124,7 +126,7 @@ C'est la fonction "couteau suisse". Elle peut tout faire !
 **Exemple :**
 
 ```javascript
-import { sendRequest } from '@neylorxt/react-api';
+import { sendRequest } from '@neylorxt/react-request';
 
 // Requête GET simple
 const { data } = await sendRequest('https://api.example.com/users');
@@ -135,7 +137,11 @@ const config = {
 };
 const response = await sendRequest('https://api.example.com/posts/1', {
   method: 'delete',
-  config: config
+  config: config,
+  params: {
+    id: 1,
+    ...
+  }
 });
 
 if (response.success) {
@@ -162,7 +168,7 @@ Voici les propriétés les plus courantes que vous pouvez utiliser :
 **Exemple avec `config`:**
 
 ```javascript
-import { getData } from '@neylorxt/react-api';
+import { getData } from '@neylorxt/react-request';
 
 const token = 'votre-token-secret';
 
@@ -211,7 +217,7 @@ Vous pouvez toujours vérifier la propriété `success` pour déterminer si votr
 
 ## 🤝 Contribuer
 
-Ce projet est open-source. Si vous voulez l'améliorer, n'hésitez pas à ouvrir une *issue* ou une *pull request* sur [GitHub](https://github.com/neylorxt/react-api).
+Ce projet est open-source. Si vous voulez l'améliorer, n'hésitez pas à ouvrir une *issue* ou une *pull request* sur [GitHub](https://github.com/neylorxt/react-request).
 
 ## 📜 Licence
 

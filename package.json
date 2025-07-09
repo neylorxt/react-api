@@ -1,20 +1,22 @@
 {
-  "name": "@neylorxt/react-api",
-  "version": "0.0.2",
+  "name": "@neylorxt/react-request",
+  "version": "0.0.3",
   "description": "It's a mini package that makes it easy for you to send data via axios.",
   "keywords": [
     "neylorxt",
-    "react-api",
-    "neylorxt-react-api",
+    "react-request",
+    "neylorxt-react-request",
+    "request",
+    "react-js",
     "api"
   ],
-  "homepage": "https://github.com/neylorxt/react-api#readme",
+  "homepage": "https://github.com/neylorxt/react-request#readme",
   "bugs": {
-    "url": "https://github.com/neylorxt/react-api/issues"
+    "url": "https://github.com/neylorxt/react-request/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neylorxt/react-api.git"
+    "url": "git+https://github.com/neylorxt/react-request.git"
   },
   "license": "MIT",
   "author": "neylorxt",
