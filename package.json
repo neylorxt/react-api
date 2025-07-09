@@ -1,6 +1,6 @@
 {
   "name": "@neylorxt/react-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "It's a mini package that makes it easy for you to send data via axios.",
   "keywords": [
     "neylorxt",
