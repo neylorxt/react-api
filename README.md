@@ -90,6 +90,25 @@ if (response.success) {
 }
 ```
 
+### `deleteData(url, config)`
+
+Use this function to delete data (HTTP DELETE).
+
+-   **`url`**: The API endpoint to call.
+-   **`config`** (optional): An Axios config object, e.g., for passing headers.
+
+**Example:**
+
+```javascript
+import { deleteData } from '@neylorxt/react-api';
+
+const response = await deleteData('https://api.example.com/posts/1');
+
+if (response.success) {
+  console.log('Post deleted:', response.data);
+}
+```
+
 ### `sendRequest(url, options)`
 
 This is a general-purpose function that can handle any type of HTTP request.
