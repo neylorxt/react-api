@@ -27,6 +27,8 @@ or
 npm install axios @neylorxt/react-request
 ```
 
+This package now includes TypeScript type definitions. If you are using TypeScript, the types will be automatically recognized.
+
 ## ✨ API Reference
 
 ### `getData(url, config)`
