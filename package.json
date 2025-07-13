@@ -1,6 +1,6 @@
 {
   "name": "@neylorxt/react-request",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "It's a mini package that makes it easy for you to send data via axios.",
   "keywords": [
     "neylorxt",
@@ -8,6 +8,9 @@
     "neylorxt-react-request",
     "request",
     "react-js",
+    "react-jsx",
+    "react-tsx",
+    "typescript",
     "api"
   ],
   "homepage": "https://github.com/neylorxt/react-request#readme",
@@ -22,6 +25,7 @@
   "author": "neylorxt",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "module": "dist/index.js",
   "exports": {
     "import": "./dist/index.js",
@@ -40,6 +44,7 @@
     "@babel/cli": "^7.28.0",
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
-    "axios": "^1.10.0"
+    "axios": "^1.10.0",
+    "typescript": "^5.0.0"
   }
 }
