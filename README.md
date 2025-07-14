@@ -19,12 +19,22 @@ Interacting with APIs can be repetitive. This package aims to simplify that proc
 First, ensure you have `axios` in your project, as it is a required peer dependency.
 
 ```bash
-npm install axios
-npm install @neylorxt/react-request
 
-or
-
+# Install with npm
 npm install axios @neylorxt/react-request
+
+# Install with Yarn
+yarn add axios @neylorxt/react-request
+
+# OR, if you already have an older version of the package:
+
+# Update to the latest version with npm
+npm install @neylorxt/react-request@latest
+
+# Update to the latest version with Yarn
+yarn add @neylorxt/react-request@latest
+
+
 ```
 
 This package now includes TypeScript type definitions. If you are using TypeScript, the types will be automatically recognized.

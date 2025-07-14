@@ -22,12 +22,22 @@ En gros, vous vous concentrez sur votre application, et **React Request** s'occu
 Pour utiliser ce package, vous devez avoir `axios` installé dans votre projet.
 
 ```bash
-npm install axios
-npm install @neylorxt/react-request
 
-ou
-
+# Installation avec npm
 npm install axios @neylorxt/react-request
+
+# Installation avec Yarn
+yarn add axios @neylorxt/react-request
+
+# OU, si vous avez déjà une ancienne version du package
+
+# Mettre à jour vers la dernière version avec npm
+npm install @neylorxt/react-request@latest
+
+# Mettre à jour vers la dernière version avec Yarn
+yarn add @neylorxt/react-request@latest
+
+
 ```
 
 Ce package inclut désormais les définitions de types pour TypeScript. Si vous utilisez TypeScript, les types seront automatiquement reconnus.
