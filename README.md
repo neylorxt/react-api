@@ -1,234 +1,311 @@
 # @neylorxt/react-request
 
-> **Note:** This package was formerly known as `@neylorxt/react-api`. The name has been updated to `@neylorxt/react-request` for clarity.
+> **🎉 New version available!** This package was formerly known as `@neylorxt/react-api`. The name has been updated to `@neylorxt/react-request` for better clarity and this new version brings many improvements!
 
-[Version Française](README.fr.md)
+**@neylorxt/react-request** is a lightweight package that simplifies sending HTTP requests with [Axios](https://axios-http.com/) in your React projects. Designed to be simple and accessible for beginners while offering the flexibility needed by experienced developers.
 
-**@neylorxt/react-request** is a lightweight wrapper around [Axios](https://axios-http.com/) that simplifies HTTP requests in your projects. It's designed to be straightforward and beginner-friendly.
+## 🆕 What's new in this version?
 
-## 🤔 Why Use It?
+### ✨ **Unified API with `sendRequest`**
+- **New universal function**: `sendRequest()` can handle all types of requests (GET, POST, PUT, DELETE)
+- **Simplified interface**: One function for all your requests
+- **Maximum flexibility**: Combines simplicity with the power of Axios
 
-Interacting with APIs can be repetitive. This package aims to simplify that process:
+### 🔧 **Enhanced API for specialized functions**
+- **New signature**: `sendData()`, `updateData()`, `deleteData()` now use an `options` object for better clarity
+- **URL parameters support**: All functions now support `params` in the config
+- **Enhanced error handling**: Better error detection and categorization
 
--   **Easy to Use**: Clear, specific functions for GET, POST, and PUT requests.
--   **Simplified Error Handling**: No more complex `try...catch` blocks for every request. Functions return a simple object indicating success or failure.
--   **Standardized Responses**: Every response, whether successful or not, follows the same structure, making it predictable and easy to handle.
+### 📦 **Native TypeScript support**
+- **Included types**: No need to install separate types
+- **Improved IntelliSense**: Autocompletion and type checking
+
+## 🤔 Why use React Request?
+
+**React Request** was created to simplify your API interactions:
+
+- **🎯 Simple to use**: Clear functions for every need
+- **🛡️ Simplified error handling**: No more complex `try...catch` blocks
+- **📊 Standardized responses**: Consistent format for all responses
+- **🔄 Flexible**: From basic usage to advanced configurations
 
 ## 🚀 Installation
 
-First, ensure you have `axios` in your project, as it is a required peer dependency.
-
 ```bash
-
-# Install with npm
+# Installation with npm
 npm install axios @neylorxt/react-request
 
-# Install with Yarn
+# Installation with Yarn
 yarn add axios @neylorxt/react-request
 
-# OR, if you already have an older version of the package:
-
-# Update to the latest version with npm
+# Migration from old version
+npm uninstall @neylorxt/react-api
 npm install @neylorxt/react-request@latest
-
-# Update to the latest version with Yarn
-yarn add @neylorxt/react-request@latest
-
-
 ```
 
-This package now includes TypeScript type definitions. If you are using TypeScript, the types will be automatically recognized.
+## 🎯 Usage
 
-## ✨ API Reference
+### 🆕 `sendRequest()` - The universal function ⭐
 
-### `getData(url, config)`
-
-Use this function to fetch data from an endpoint (HTTP GET).
-
--   **`url`**: The API endpoint to call.
--   **`config`** (optional): An Axios config object. See details below.
-
-**Example:**
-
-```javascript
-import { getData } from '@neylorxt/react-request';
-
-const response = await getData('https://api.example.com/posts/1');
-
-if (response.success) {
-  console.log('Post:', response.data);
-} else {
-  console.error('Error:', response.errorMessage);
-}
-```
-
-### `sendData(url, data, config)`
-
-Use this function to create new data (HTTP POST).
-
--   **`url`**: The API endpoint to call.
--   **`data`**: The JavaScript object to send as the request body.
--   **`config`** (optional): An Axios config object.
-
-**Example:**
-
-```javascript
-import { sendData } from '@neylorxt/react-request';
-
-const newPost = { title: 'My Awesome Post', content: '...' };
-const response = await sendData('https://api.example.com/posts', newPost);
-
-if (response.success) {
-  console.log('Post created:', response.data);
-}
-```
-
-### `updateData(url, data, config)`
-
-Use this function to update existing data (HTTP PUT).
-
--   **`url`**: The API endpoint to call.
--   **`data`**: The JavaScript object to send as the request body.
--   **`config`** (optional): An Axios config object.
-
-**Example:**
-
-```javascript
-import { updateData } from '@neylorxt/react-request';
-
-const updatedData = { title: 'My Updated Title' };
-const response = await updateData('https://api.example.com/posts/1', updatedData);
-
-if (response.success) {
-  console.log('Post updated:', response.data);
-}
-```
-
-### `deleteData(url, config)`
-
-Use this function to delete data (HTTP DELETE).
-
--   **`url`**: The API endpoint to call.
--   **`config`** (optional): An Axios config object, e.g., for passing headers.
-
-**Example:**
-
-```javascript
-import { deleteData } from '@neylorxt/react-request';
-
-const response = await deleteData('https://api.example.com/posts/1');
-
-if (response.success) {
-  console.log('Post deleted:', response.data);
-}
-```
-
-### `sendRequest(url, options)`
-
-This is a general-purpose function that can handle any type of HTTP request.
-
--   **`url`**: The API endpoint to call.
--   **`options`** (optional): An object to configure the request:
-    -   **`method`**: The HTTP method (`'get'`, `'post'`, `'put'`, `'delete'`). Defaults to `'get'`.
-    -   **`data`**: The data to send (for POST, PUT, etc.).
-    -   **`config`**: The advanced Axios config object.
-
-**Example:**
+**This is the new star of the package!** This function can do everything and greatly simplifies your code.
 
 ```javascript
 import { sendRequest } from '@neylorxt/react-request';
 
-// A simple GET request
-const { data } = await sendRequest('https://api.example.com/users');
+// Simple GET
+const users = await sendRequest('/api/users');
 
-// A DELETE request with an auth token
-const config = {
-  headers: { Authorization: `Bearer ${your_token}` }
-};
-const response = await sendRequest('https://api.example.com/posts/1', {
-  method: 'delete',
-  config: config,
-    params: {
-        id: 1,
-        ...
-    }
+// POST with data
+const newUser = await sendRequest('/api/users', {
+  method: 'post',
+  data: { name: 'John', email: 'john@example.com' }
 });
 
-if (response.success) {
-  console.log('Post deleted!');
-}
+// PUT with authentication
+const updatedUser = await sendRequest('/api/users/1', {
+  method: 'put',
+  data: { name: 'John Updated' },
+  config: {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+});
+
+// DELETE with parameters
+const result = await sendRequest('/api/users/1', {
+  method: 'delete',
+  params: { force: true },
+  config: {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+});
 ```
 
----
-
-## ⚙️ The `config` Object
-
-The `config` object allows you to pass advanced options directly to Axios. This gives you more control over the request.
-
-Here are some of the most common properties you can use:
-
-| Key               | Type      | Description                                                                                                 |
-| :---------------- | :-------- | :---------------------------------------------------------------------------------------------------------- |
-| `headers`         | `object`  | An object of custom headers to be sent (e.g., `Authorization`, `Content-Type`).                             |
-| `params`          | `object`  | URL parameters to be sent with the request (e.g., for pagination or sorting).                               |
-| `withCredentials` | `boolean` | Indicates whether cross-site Access-Control requests should be made using credentials like cookies.         |
-| `timeout`         | `number`  | The number of milliseconds before the request times out. If the request takes longer, it will be aborted. |
-| `responseType`    | `string`  | The format of the response data (e.g., `'json'`, `'blob'`, `'text'`). Defaults to `'json'`.                  |
-
-**Example using `config`:**
+### 📥 `getData()` - Fetch data
 
 ```javascript
 import { getData } from '@neylorxt/react-request';
 
-const token = 'your-secret-auth-token';
+// Simple GET
+const response = await getData('/api/posts');
 
-const config = {
-  // Set custom headers for authentication
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  // Add URL query parameters
-  params: {
-    page: 2,
-    limit: 10
-  },
-  // Set a timeout of 5 seconds
-  timeout: 5000
-};
-
-// This will make a GET request to:
-// https://api.example.com/items?page=2&limit=10
-const response = await getData("https://api.example.com/items", config);
+// GET with parameters and authentication
+const response = await getData('/api/posts', {
+  params: { page: 2, limit: 10 },
+  headers: { Authorization: `Bearer ${token}` }
+});
 
 if (response.success) {
-  console.log('Items:', response.data);
+  console.log('Posts:', response.data);
 }
 ```
 
----
+### 📤 `sendData()` - Send data (POST)
 
-## 📦 Response Format
-
-All functions return a Promise that resolves to an object with the following structure:
+**⚠️ New API!** The function now uses an `options` object for better clarity.
 
 ```javascript
+import { sendData } from '@neylorxt/react-request';
+
+// Old version (still supported)
+// const response = await sendData(url, data, config);
+
+// ✅ New recommended version
+const response = await sendData('/api/posts', {
+  data: { title: 'My post', content: 'Content...' },
+  config: {
+    headers: { Authorization: `Bearer ${token}` },
+    params: { draft: false }
+  }
+});
+```
+
+### 🔄 `updateData()` - Update data (PUT)
+
+```javascript
+import { updateData } from '@neylorxt/react-request';
+
+const response = await updateData('/api/posts/1', {
+  data: { title: 'Updated title' },
+  config: {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+});
+```
+
+### 🗑️ `deleteData()` - Delete data (DELETE)
+
+```javascript
+import { deleteData } from '@neylorxt/react-request';
+
+const response = await deleteData('/api/posts/1', {
+  config: {
+    headers: { Authorization: `Bearer ${token}` },
+    params: { force: true }
+  }
+});
+```
+
+## ⚙️ Advanced configuration
+
+### The `config` object - All the power of Axios
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `headers` | `object` | Custom headers (Authentication, Content-Type, etc.) |
+| `params` | `object` | URL parameters (?page=1&limit=10) |
+| `timeout` | `number` | Timeout in milliseconds |
+| `withCredentials` | `boolean` | Send cross-domain cookies |
+| `responseType` | `string` | Response format ('json', 'blob', 'text') |
+
+### Complete example with authentication
+
+```javascript
+import { sendRequest } from '@neylorxt/react-request';
+
+const token = localStorage.getItem('authToken');
+
+const config = {
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  },
+  params: {
+    include: 'comments,author',
+    page: 1
+  },
+  timeout: 10000
+};
+
+// Fetch posts with comments
+const response = await sendRequest('/api/posts', {
+  method: 'get',
+  config
+});
+
+// Create a new post
+const newPost = await sendRequest('/api/posts', {
+  method: 'post',
+  data: { title: 'My title', content: 'My content' },
+  config
+});
+```
+
+## 📊 Standardized response format
+
+All functions return the same response format:
+
+```javascript
+// On success
 {
-  success: true,      // `false` if the request failed
-  status: 200,        // The HTTP status code (e.g., 200, 404, 500)
-  data: { ... },      // The data from the server response
-  headers: { ... },   // The headers from the server response
-  // Only present on error:
-  errorMessage: 'Network Error...',
-  errorType: 'NETWORK_ERROR'
+  success: true,
+  status: 200,
+  data: { /* server data */ },
+  headers: { /* response headers */ }
+}
+
+// On error
+{
+  success: false,
+  status: 404,
+  data: { /* server error data */ },
+  headers: { /* response headers */ },
+  errorMessage: "Not Found",
+  errorType: "HTTP_ERROR" // or "NETWORK_ERROR", "CONFIG_ERROR"
 }
 ```
 
-You can always check the `success` property to determine if your request was successful.
+## 🔧 Practical examples
+
+### Complete authentication
+
+```javascript
+import { sendRequest } from '@neylorxt/react-request';
+
+// Login
+const login = async (credentials) => {
+  const response = await sendRequest('/api/auth/login', {
+    method: 'post',
+    data: credentials
+  });
+  
+  if (response.success) {
+    const token = response.data.token;
+    localStorage.setItem('authToken', token);
+    return token;
+  }
+  throw new Error(response.errorMessage);
+};
+
+// Authenticated request
+const fetchUserData = async () => {
+  const token = localStorage.getItem('authToken');
+  
+  return await sendRequest('/api/user/profile', {
+    config: {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  });
+};
+```
+
+### Pagination and filtering
+
+```javascript
+import { getData } from '@neylorxt/react-request';
+
+const fetchPosts = async (page = 1, filters = {}) => {
+  return await getData('/api/posts', {
+    params: {
+      page,
+      limit: 20,
+      ...filters
+    }
+  });
+};
+
+// Usage
+const posts = await fetchPosts(1, { category: 'tech', status: 'published' });
+```
+
+## 🚀 Migration from old version
+
+### Name changes
+
+```javascript
+// Before
+import { ... } from '@neylorxt/react-api';
+
+// Now
+import { ... } from '@neylorxt/react-request';
+```
+
+### New API for specialized functions
+
+```javascript
+// Before
+const response = await sendData(url, data, config);
+const response = await updateData(url, data, config);
+const response = await deleteData(url, config);
+
+// Now (recommended)
+const response = await sendData(url, { data, config });
+const response = await updateData(url, { data, config });
+const response = await deleteData(url, { config });
+
+// The old API still works for backward compatibility
+```
 
 ## 🤝 Contributing
 
-This is an open-source project. If you want to help improve it, feel free to open an issue or a pull request on [GitHub](https://github.com/neylorxt/react-request).
+This project is open-source! Your contributions are welcome:
+
+- 🐛 Report bugs
+- 💡 Suggest improvements
+- 📝 Improve documentation
+- 🔧 Submit pull requests
+
+[Contribute on GitHub](https://github.com/neylorxt/react-request)
 
 ## 📜 License
 
-This project is licensed under the MIT License.
+MIT License - Use freely in your projects!

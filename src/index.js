@@ -3,7 +3,7 @@ import axios from 'axios';
 
 /**
  * Send data using axios
- * @typedef {Object} SendRequestOptions
+ * @typedef {Object} Options
  * @property {string} method - HTTP method ('get', 'post', etc.)
  * @property {object} data - Data to send (for POST, PUT, etc.)
  * @property {object} config - Axios config (headers, withCredentials, etc.)
@@ -11,7 +11,7 @@ import axios from 'axios';
  /**
  * Unified Axios request wrapper
  * @param {string} url - Endpoint URL
- * @param {SendRequestOptions} [options={}]
+ * @param {Options} [options={}]
  *
  *
  *
@@ -92,37 +92,58 @@ export async function sendRequest(url, options= {}) {
 
 
 /**
- * Send data using axios (POST)
- * @param {string} url - The endpoint URL
- * @param {object} [data={}] - The data to send in the request body
- * @param {object} [config={}] - Additional Axios config (headers, etc.)
- * @param {object} [config.params] - Optional query string parameters
- * @returns {Promise<{ success: boolean, status: number, data: any, headers: object }>}
+ * send data using axios
+ * @typedef {Object} Options
+ * @property {string} method - HTTP method ('get', 'post', etc.)
+ * @property {object} data - Data to send (for POST, PUT, etc.)
+ * @property {object} config - Axios config (headers, withCredentials, etc.)
+
+ /**
+ * Unified Axios request wrapper
+ * @param {string} url - Endpoint URL
+ * @param {Options} [options={}]
  *
- * Exemple :
  *
- * await sendData( 'https://api.example.com/items',
- *   { name: 'Sword', rarity: 'legendary' },
- *   {
+ *
+ * // GET simple sans params
+ * await sendRequest('/api/users');
+ *
+ * // POST avec données
+ * await sendRequest('/api/user', {
+ *   method: 'post',
+ *   data: { username: 'neylorxt' }
+ * });
+ *
+ * // PUT avec token
+ * await sendRequest('/api/user/1', {
+ *   method: 'put',
+ *   data: { username: 'updatedName' },
+ *   config: {
  *     headers: {
- *       Authorization: `Bearer ${token}`
+ *       Authorization: `Bearer ${token}`,
+ *       'Content-Type': 'application/json',
  *     },
- *     params: {
+ *      params: {
  *       debug: true,
  *       lang: 'fr'
  *     }
+ *
  *   }
- * );
+ * });
  *
  */
-export async function sendData(url, data = {}, config = {}) {
+export async function sendData(url, options= {}) {
     try {
+        const {
+            data = {},
+            config = {},
+        } = options;
 
-        const { method, ...safeConfig } = config; // on retire toute méthode fournie
+        const { method, data:_ignored, ...safeConfig } = config; // on retire toute méthode fournie
 
         const axiosConfig = {
             ...safeConfig,
-            params: config.params || {} // s'assurer que params existe
+            params: config.params || {}
         };
 
         const response = await axios.post(url, data, axiosConfig); // ✅ config peut inclure params & headers
@@ -143,35 +164,62 @@ export async function sendData(url, data = {}, config = {}) {
 
 
 /**
- * Update data using axios (PUT)
+ * update data using axios
+ * @typedef {Object} Options
+ * @property {string} method - HTTP method ('get', 'post', etc.)
+ * @property {object} data - Data to send (for POST, PUT, etc.)
+ * @property {object} config - Axios config (headers, withCredentials, etc.)
+
+ /**
+ * Unified Axios request wrapper
+ * @param {string} url - Endpoint URL
+ * @param {Options} [options={}]
  *
- * @param {string} url - The endpoint URL
- * @param {object} [data={}] - The data to send in the request body
- * @param {object} [config={}] - Additional Axios config (headers, params, etc.)
- * @returns {Promise<{ success: boolean, status: number, data: any, headers: object }>}
  *
- * @example
- * const data = { name: "Neylorxt" };
- * { name: 'Sword', rarity: 'legendary' },
- *   {
+ *
+ * // GET simple sans params
+ * await sendRequest('/api/users');
+ *
+ * // POST avec données
+ * await sendRequest('/api/user', {
+ *   method: 'post',
+ *   data: { username: 'neylorxt' }
+ * });
+ *
+ * // PUT avec token
+ * await sendRequest('/api/user/1', {
+ *   method: 'put',
+ *   data: { username: 'updatedName' },
+ *   config: {
  *     headers: {
- *       Authorization: `Bearer ${token}`
+ *       Authorization: `Bearer ${token}`,
+ *       'Content-Type': 'application/json',
  *     },
  *     params: {
  *       debug: true,
  *       lang: 'fr'
  *     }
+ *
  *   }
- * const response = await updateData("https://api.example.com/user/123", data, config);
+ * });
+ *
+ *
+ *
  */
-export async function updateData(url, data = {}, config = {}) {
+export async function updateData(url, options= {}) {
     try {
-        const { method, ...safeConfig } = config; // on retire toute méthode fournie
+        const {
+            data = {},
+            config = {},
+        } = options;
+
+        const { method, data:_ignored, ...safeConfig } = config; // on retire toute méthode fournie
 
         const axiosConfig = {
             ...safeConfig,
-            params: config.params || {} // s'assurer que params existe
+            params: config.params || {}
         };
+
         const response = await axios.put(url, data, axiosConfig); // ✅ config peut inclure headers + params
 
         return {
@@ -187,39 +235,62 @@ export async function updateData(url, data = {}, config = {}) {
     }
 }
 
-
 /**
- * Update data using axios (PUT)
+ * delete data using axios
+ * @typedef {Object} Options
+ * @property {string} method - HTTP method ('get', 'post', etc.
+ * @property {object} config - Axios config (headers, withCredentials, etc.)
+
+ /**
+ * Unified Axios request wrapper
+ * @param {string} url - Endpoint URL
+ * @param {Options} [options={}]
  *
- * @param {string} url - The endpoint URL
- * @param {object} [data={}] - The data to send in the request body
- * @param {object} [config={}] - Additional Axios config (headers, params, etc.)
- * @returns {Promise<{ success: boolean, status: number, data: any, headers: object }>}
  *
- * @example
- * const data = { name: "Neylorxt" };
- * { name: 'Sword', rarity: 'legendary' },
- *   {
+ *
+ * // GET simple sans params
+ * await sendRequest('/api/users');
+ *
+ * // POST avec données
+ * await sendRequest('/api/user', {
+ *   method: 'post',
+ *   data: { username: 'neylorxt' }
+ * });
+ *
+ * // PUT avec token
+ * await sendRequest('/api/user/1', {
+ *   method: 'put',
+ *   data: { username: 'updatedName' },
+ *   config: {
  *     headers: {
- *       Authorization: `Bearer ${token}`
+ *       Authorization: `Bearer ${token}`,
+ *       'Content-Type': 'application/json',
  *     },
  *     params: {
  *       debug: true,
  *       lang: 'fr'
  *     }
+ *
  *   }
- * const response = await updateData("https://api.example.com/user/123", data, config);
+ * });
+ *
+ *
+ *
  */
-export async function deleteData(url, data = {}, config = {}) {
-    try {
 
-        const { method, data, ...safeConfig } = config; // on retire toute méthode fournie
+export async function deleteData(url, options= {}) {
+    try {
+        const {
+            config = {},
+        } = options;
+
+        const { method, data:_ignored, ...safeConfig } = config; // on retire toute méthode fournie
 
         const axiosConfig = {
             ...safeConfig,
-            data: data,
-            params: config.params || {} // s'assurer que params existe
+            params: config.params || {}
         };
+
         const response = await axios.delete(url, axiosConfig); // ✅ config peut inclure headers + params
 
         return {
@@ -256,7 +327,7 @@ export async function deleteData(url, data = {}, config = {}) {
 export async function getData(url, config = {}) {
     try {
 
-        const { method, ...safeConfig } = config; // on retire toute méthode fournie
+        const { method, data, ...safeConfig } = config; // on retire toute méthode fournie
 
         const axiosConfig = {
             ...safeConfig,
