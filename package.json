@@ -6,12 +6,17 @@
     "neylorxt",
     "react-request",
     "neylorxt-react-request",
+    "axios",
     "request",
     "react-js",
     "react-jsx",
     "react-tsx",
     "typescript",
-    "api"
+    "http",
+    "api",
+    "jsx",
+    "tsx"
+
   ],
   "homepage": "https://github.com/neylorxt/react-request#readme",
   "bugs": {
