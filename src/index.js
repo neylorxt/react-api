@@ -212,6 +212,7 @@ export async function updateData(url, data = {}, config = {}) {
  */
 export async function deleteData(url, data = {}, config = {}) {
     try {
+
         const { method, data, ...safeConfig } = config; // on retire toute méthode fournie
 
         const axiosConfig = {
@@ -233,6 +234,7 @@ export async function deleteData(url, data = {}, config = {}) {
         return formatAxiosError(error);
     }
 }
+
 
 
 
